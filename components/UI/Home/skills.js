@@ -37,7 +37,7 @@ const Skills = () => {
           className="absolute md:-top-[15rem] top-8 z-[10] -left-5 font-extrabold md:text-[9rem] text-[6rem] text-primaryBlack-200/70"
           id="summary_text"
         >
-          Persona
+          Persona.
         </h3>
 
         <div className="pb-10 pt-[12rem]">
