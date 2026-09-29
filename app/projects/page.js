@@ -5,7 +5,7 @@ import "./projects.css";
 
 export const metadata = {
   title: "Wahab Sekinat - Projects",
-  description: "Here you can find some of my projects in development.",
+  description: "A selection of product design and design-led web projects.",
 };
 
 const ProjectsPage = () => {

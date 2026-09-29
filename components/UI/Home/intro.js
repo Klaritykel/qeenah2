@@ -57,16 +57,16 @@ const Intro = () => {
       <section className="flex items-center justify-center min-h-screen p-4 section invisible" id="me" ref={meRef}>
         <div>
           <h1 className={`${cormorant.className} text-center font-medium`} id="dev_text">
-            Frontend Web Developer
+            Product Designer
           </h1>
           <div
             className={`space-y-1 font-extrabold text-primary lg:text-[10rem] md:text-[7rem] sm:text-[6rem] text-[15vw] tracking-wider leading-tight text-center`}
           >
-            <p className={`land_t`}>CREATING</p>
-            <p className="land_modern">FUNCTIONAL</p>
+            <p className={`land_t`}>DESIGNING</p>
+            <p className="land_modern">INTUITIVE</p>
           </div>
           <div className="flex justify-center gap-2 overflow-hidden text-center land_likkle">
-            <span className={`${cormorant.className} font-light md:text-7xl text-4xl`}>Digital Experiences</span>
+            <span className={`${cormorant.className} font-light md:text-7xl text-4xl`}>Digital Products</span>
             <span>
               For your <span className="font-bold">business/brand</span>.
             </span>

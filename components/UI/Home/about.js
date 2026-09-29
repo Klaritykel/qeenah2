@@ -58,8 +58,8 @@ const About = () => {
             <div className="z-50 flex flex-col-reverse items-center grid-cols-2 gap-16 md:grid">
               <TransitionReveal addClass="space-y-8">
                 <p className="text-lg leading-loose text-primary/80">
-                  <span className="text-4xl font-semibold leading-normal">Hi</span> I am a passionate, self-motivated, and result-oriented individual with a keen interest in Software Development, Digital Technology, and Cyber-security. I am highly enthusiastic in using HTML, CSS and JavaScript to develop web pages as well as UI/UX.
-                  <br/>I aim to start creating my own innovative ideas with top-notch designs in the software engineering space with a world-class Software Organization either through internship or student training.
+                  <span className="text-4xl font-semibold leading-normal">Hi</span> I am a product designer who is passionate, self-motivated, and result-oriented, with a keen interest in UI/UX design, user-centered problem solving, and digital product strategy. I enjoy turning ideas into clear user flows, wireframes, and polished interfaces in Figma.
+                  <br/>Because I also build with HTML, CSS, and JavaScript, I design with a real sense of what&apos;s feasible to ship, and can take a concept from a rough sketch through to a working interface. I aim to bring thoughtful, user-first design to a world-class organization through internship or student training.
                 </p>
 
                 <div className="w-fit">

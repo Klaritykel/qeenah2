@@ -42,20 +42,38 @@ const Skills = () => {
 
         <div className="pb-10 pt-[12rem]">
           <div className="container min-h-[20rem] space-y-28">
-            <div>
-              <TransitionOpacityInView addClass="text-4xl mb-2 font-bold">
-                <p>Skills</p>
-              </TransitionOpacityInView>
+            <div className="space-y-10">
+              <div>
+                <TransitionOpacityInView addClass="text-4xl mb-2 font-bold">
+                  <p>Design Skills</p>
+                </TransitionOpacityInView>
 
-              <TransitionParentFast addClass="grid lg:grid-cols-8 md:grid-cols-6 sm:grid-cols-3 grid-cols-2 select-none text-center gap-4">
-                {skills.frontend.map((skill, idx) => (
-                  <TransitionOpacity key={idx}>
-                    <div className="py-5 space-y-1 duration-200 border rounded-md cursor-pointer border-primary/10 hover:bg-primary/10">
-                      <div className="grid place-content-center">{skill.icon}</div> <p>{skill.label}</p>
-                    </div>
-                  </TransitionOpacity>
-                ))}
-              </TransitionParentFast>
+                <TransitionParentFast addClass="grid lg:grid-cols-8 md:grid-cols-6 sm:grid-cols-3 grid-cols-2 select-none text-center gap-4">
+                  {skills.design.map((skill, idx) => (
+                    <TransitionOpacity key={idx}>
+                      <div className="py-5 space-y-1 duration-200 border rounded-md cursor-pointer border-primary/10 hover:bg-primary/10">
+                        <div className="grid place-content-center">{skill.icon}</div> <p>{skill.label}</p>
+                      </div>
+                    </TransitionOpacity>
+                  ))}
+                </TransitionParentFast>
+              </div>
+
+              <div>
+                <TransitionOpacityInView addClass="text-2xl mb-2 font-bold opacity-80">
+                  <p>Also Building With</p>
+                </TransitionOpacityInView>
+
+                <TransitionParentFast addClass="grid lg:grid-cols-8 md:grid-cols-6 sm:grid-cols-3 grid-cols-2 select-none text-center gap-4">
+                  {skills.frontend.map((skill, idx) => (
+                    <TransitionOpacity key={idx}>
+                      <div className="py-5 space-y-1 duration-200 border rounded-md cursor-pointer border-primary/10 hover:bg-primary/10">
+                        <div className="grid place-content-center">{skill.icon}</div> <p>{skill.label}</p>
+                      </div>
+                    </TransitionOpacity>
+                  ))}
+                </TransitionParentFast>
+              </div>
             </div>
           </div>
         </div>
