@@ -78,11 +78,11 @@ const About = () => {
                 <div className="top-0 left-0 grid w-full h-full md:absolute place-content-center">
                   <div className="w-[500px] h-[500px] rounded-full flex items-center overflow-hidden border-8 border-primary/20">
                     <Image
-                      src={"/images/bg/me__.png"}
+                      src={"/images/bg/about-photo.jpg"}
                       alt="Wahab Sekinat"
-                      width={300}
-                      height={300}
-                      className="w-full object-cover"
+                      width={500}
+                      height={500}
+                      className="w-full h-full object-cover"
                       draggable={false}
                     />
                   </div>

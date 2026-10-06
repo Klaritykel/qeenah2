@@ -2,6 +2,7 @@
 import Intro from "./intro";
 import About from "./about";
 import Skills from "./skills";
+import Experience from "./experience";
 import PersonalStats from "./personal-stats";
 import Education from "./education";
 import Projects from "./projects";
@@ -19,6 +20,7 @@ const HomeContent = () => {
       <Intro />
       <About />
       <Skills />
+      <Experience />
       <PersonalStats />
       <Education />
       <ServiceOffer />
