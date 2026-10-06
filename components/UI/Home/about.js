@@ -3,6 +3,7 @@ import Star from "@/components/Common/Icons/star";
 import { TransitionReveal } from "@/lib/utils/transitions";
 import { gsap } from "gsap";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { ChevronDown, FileText } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -13,22 +14,45 @@ const About = () => {
   const { homeRef } = useStore();
   const router = useRouter();
   const [cvMenuOpen, setCvMenuOpen] = useState(false);
+  const [cvMenuPos, setCvMenuPos] = useState(null);
+  const [mounted, setMounted] = useState(false);
+  const cvButtonRef = useRef(null);
   const cvMenuRef = useRef(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const goToCv = (href) => {
     setCvMenuOpen(false);
     router.push(href);
   };
 
+  const toggleCvMenu = () => {
+    if (!cvMenuOpen && cvButtonRef.current) {
+      const rect = cvButtonRef.current.getBoundingClientRect();
+      setCvMenuPos({ top: rect.bottom + 8, left: rect.left, width: rect.width });
+    }
+    setCvMenuOpen((prev) => !prev);
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (cvMenuRef.current && !cvMenuRef.current.contains(event.target)) {
+      const insideButton = cvButtonRef.current && cvButtonRef.current.contains(event.target);
+      const insideMenu = cvMenuRef.current && cvMenuRef.current.contains(event.target);
+      if (!insideButton && !insideMenu) {
         setCvMenuOpen(false);
       }
     };
 
+    const handleScroll = () => setCvMenuOpen(false);
+
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll, true);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll, true);
+    };
   }, []);
 
   useLayoutEffect(() => {
@@ -82,33 +106,42 @@ const About = () => {
                   <br/>Because I also build with HTML, CSS, and JavaScript, I design with a real sense of what&apos;s feasible to ship, and can take a concept from a rough sketch through to a working interface. I aim to bring thoughtful, user-first design to a world-class organization through internship or student training.
                 </p>
 
-                <div className="relative w-fit" ref={cvMenuRef}>
+                <div className="relative w-fit">
                   <button
-                    onClick={() => setCvMenuOpen((prev) => !prev)}
+                    ref={cvButtonRef}
+                    onClick={toggleCvMenu}
                     className="flex items-center gap-2 px-4 py-2 transition-colors duration-300 bg-transparent border rounded-md hover:bg-primary hover:text-primaryBlack-100 border-primary text-primary"
                   >
                     <span>View My CV</span>
                     <ChevronDown size={18} className={`duration-200 ${cvMenuOpen ? "rotate-180" : ""}`} />
                   </button>
 
-                  {cvMenuOpen && (
-                    <div className="absolute left-0 z-50 w-56 mt-2 overflow-hidden border rounded-md shadow-xl top-full border-primary/20 bg-primaryBlack-100">
-                      <button
-                        type="button"
-                        onClick={() => goToCv("/cv/product-designer")}
-                        className="flex items-center w-full gap-2 px-4 py-3 text-sm text-left duration-200 text-primary/90 hover:bg-primary/10 hover:text-primary"
+                  {mounted &&
+                    cvMenuOpen &&
+                    cvMenuPos &&
+                    createPortal(
+                      <div
+                        ref={cvMenuRef}
+                        className="fixed z-[100] w-56 overflow-hidden border rounded-md shadow-xl border-primary/20 bg-primaryBlack-100"
+                        style={{ top: cvMenuPos.top, left: cvMenuPos.left }}
                       >
-                        <FileText size={16} /> Product Design
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => goToCv("/cv/frontend-developer")}
-                        className="flex items-center w-full gap-2 px-4 py-3 text-sm text-left duration-200 border-t text-primary/90 border-primary/10 hover:bg-primary/10 hover:text-primary"
-                      >
-                        <FileText size={16} /> Frontend
-                      </button>
-                    </div>
-                  )}
+                        <button
+                          type="button"
+                          onClick={() => goToCv("/cv/product-designer")}
+                          className="flex items-center w-full gap-2 px-4 py-3 text-sm text-left duration-200 text-primary/90 hover:bg-primary/10 hover:text-primary"
+                        >
+                          <FileText size={16} /> Product Design
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => goToCv("/cv/frontend-developer")}
+                          className="flex items-center w-full gap-2 px-4 py-3 text-sm text-left duration-200 border-t text-primary/90 border-primary/10 hover:bg-primary/10 hover:text-primary"
+                        >
+                          <FileText size={16} /> Frontend
+                        </button>
+                      </div>,
+                      document.body
+                    )}
                 </div>
               </TransitionReveal>
               <TransitionReveal addClass="grid p-4 place-content-center relative" delay={0.2}>
