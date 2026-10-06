@@ -30,7 +30,7 @@ const Services = () => {
   return (
     <section ref={ref} className="my-24">
       <div
-        className="w-screen h-screen xl:h-[40rem] bg-gradient-to-t from-primary via-[#f0eade7a]"
+        className="w-screen h-screen xl:h-[40rem] bg-gradient-to-t from-primary via-[#f1f5f97a]"
         id="reveal_circle"
       ></div>
       <div className="w-full h-screen bg-primary"></div>
