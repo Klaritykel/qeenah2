@@ -5,14 +5,20 @@ import { gsap } from "gsap";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ChevronDown, FileText } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { useStore } from "@/lib/utils/providers";
 
 const About = () => {
   const { homeRef } = useStore();
+  const router = useRouter();
   const [cvMenuOpen, setCvMenuOpen] = useState(false);
   const cvMenuRef = useRef(null);
+
+  const goToCv = (href) => {
+    setCvMenuOpen(false);
+    router.push(href);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -55,7 +61,7 @@ const About = () => {
   return (
     <>
       <div className="h-[4rem] bg-gradient-to-t pt-[15rem] from-black"></div>
-      <section className="relative min-h-screen bg-black" id="about_">
+      <section className="relative z-20 min-h-screen bg-black" id="about_">
         <div>
           <h3
             className="absolute -top-[15rem] z-[10] -left-5 font-extrabold md:text-[9rem] text-[6rem] text-primaryBlack-200/70"
@@ -87,20 +93,20 @@ const About = () => {
 
                   {cvMenuOpen && (
                     <div className="absolute left-0 z-50 w-56 mt-2 overflow-hidden border rounded-md shadow-xl top-full border-primary/20 bg-primaryBlack-100">
-                      <Link
-                        href="/cv/product-designer"
-                        onClick={() => setCvMenuOpen(false)}
-                        className="flex items-center gap-2 px-4 py-3 text-sm duration-200 text-primary/90 hover:bg-primary/10 hover:text-primary"
+                      <button
+                        type="button"
+                        onClick={() => goToCv("/cv/product-designer")}
+                        className="flex items-center w-full gap-2 px-4 py-3 text-sm text-left duration-200 text-primary/90 hover:bg-primary/10 hover:text-primary"
                       >
                         <FileText size={16} /> Product Design
-                      </Link>
-                      <Link
-                        href="/cv/frontend-developer"
-                        onClick={() => setCvMenuOpen(false)}
-                        className="flex items-center gap-2 px-4 py-3 text-sm duration-200 border-t text-primary/90 border-primary/10 hover:bg-primary/10 hover:text-primary"
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => goToCv("/cv/frontend-developer")}
+                        className="flex items-center w-full gap-2 px-4 py-3 text-sm text-left duration-200 border-t text-primary/90 border-primary/10 hover:bg-primary/10 hover:text-primary"
                       >
                         <FileText size={16} /> Frontend
-                      </Link>
+                      </button>
                     </div>
                   )}
                 </div>
