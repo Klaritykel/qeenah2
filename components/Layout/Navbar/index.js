@@ -78,7 +78,7 @@ useLayoutEffect(() => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 z-20 w-full mx-auto text-lg font-bold transition-all duration-300 ${
+      <nav className={`fixed top-0 left-0 z-30 w-full mx-auto text-lg font-bold transition-all duration-300 ${
     scrolled
       ? "bg-black/50 backdrop-blur-md shadow-md"
       : "bg-transparent"
